@@ -1,0 +1,240 @@
+/* Reset és alap stílusok */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f7f6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Header és Navigáció */
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a:hover {
+    color: #3498db;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    background: #3498db;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #2980b9;
+}
+
+/* Általános Szekció Stílusok */
+.section {
+    padding: 60px 0;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #2c3e50;
+}
+
+.bg-light {
+    background-color: #e9ecef;
+}
+
+/* Kártyák (About) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+/* Listák (Causes) */
+.list-group {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.list-group li {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.list-group li:last-child {
+    border-bottom: none;
+}
+
+.list-group strong {
+    color: #e74c3c;
+}
+
+/* Features (Solutions) */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+}
+
+.feature h4 {
+    margin-bottom: 10px;
+    color: #27ae60;
+}
+
+/* Contact / Footer */
+.footer-section {
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-section h2 {
+    color: #fff;
+}
+
+.footer-section input {
+    padding: 10px;
+    width: 300px;
+    border-radius: 4px;
+    border: none;
+    margin-right: 10px;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    background: #c0392b;
+}
+
+footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    header .container {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 15px;
+    }
+    
+    .footer-section input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Munkavállalói Elégedettség és Lemorzsolódás</title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">HR Elemzés</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Kezdőlap</a></li>
+                    <li><a href="#about">Jelenség</a></li>
+                    <li><a href="#causes">Okok</a></li>
+                    <li><a href="#solutions">Megoldások</a></li>
+                    <li><a href="#viz">Adatvizualizáció</a></li>
+                    <li><a href="#contact">Kapcsolat</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Munkavállalói Elégedettség és Lemorzsolódás</h1>
+            <p>Fedezze fel az összefüggéseket a munkahelyi légkör és a fluktuáció között.</p>
+            <a href="#about" class="btn">Tudjon meg többet</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="text-content">
+                <h2>Projekt bemutatása</h2>
+                <p><strong>Bevezető (a probléma):</strong> Ez a projekt egy fiktív középvállalat 1470 munkavállalójának adatait elemzi, hogy választ adjon a menedzsment egyik legégetőbb kérdésére: Miért veszítjük el a tehetségeinket?</p>
+                <p><strong>Részletes leírás (a megoldás):</strong> Nem pusztán leíró statisztikákat alkalmazunk, hanem feltárjuk a rejtett összefüggéseket a túlóra, a bérezés és a munkahelyi elégedettség között. Célunk, hogy a nyers adatokat üzleti értékké alakítsuk, és konkrét beavatkozási pontokat azonosítsunk a HR vezetők számára a lemorzsolódás csökkentése érdekében.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2>A Jelenségről</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Munkavállalói Elégedettség</h3>
+                    <p>Az a mérték, amely megmutatja, mennyire boldogok és teljesednek ki a dolgozók a munkahelyükön. Ez közvetlen hatással van a termelékenységre és a szervezet sikerére.</p>
+                </div>
+                <div class="card">
+                    <h3>Lemorzsolódás (Attrition)</h3>
+                    <p>A munkaerő természetes vagy nem kívánt csökkenése, amikor a dolgozók elhagyják a céget, és nem feltétlenül kerülnek azonnali pótlásra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="causes" class="section bg-light">
+        <div class="container">
+            <h2>A Lemorzsolódás Főbb Okai</h2>
+            <ul class="list-group">
+                <li><strong>Alacsony juttatások:</strong> Ha a fizetés és egyéb juttatások nem versenyképesek.</li>
+                <li><strong>Karrierlehetőségek hiánya:</strong> Ha a dolgozó nem lát fejlődési potenciált.</li>
+                <li><strong>Rossz menedzsment:</strong> A közvetlen feletteshez fűződő rossz viszony.</li>
+                <li><strong>Munka-magánélet egyensúly:</strong> A túlzott terhelés és rugalmatlanság.</li>
+                <li><strong>Vállalati kultúra:</strong> Toxikus légkör vagy az elismerés hiánya.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="solutions" class="section">
+        <div class="container">
+            <h2>Megtartási Stratégiák</h2>
+            <div class="text-content">
+                <p>A magas elégedettség fenntartása és a lemorzsolódás csökkentése érdekében a vállalatoknak proaktív lépéseket kell tenniük:</p>
+                <div class="features">
+                    <div class="feature">
+                        <h4>Rendszeres Visszajelzés</h4>
+                        <p>Teljesítményértékelések és elégedettségi felmérések bevezetése.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Versenyképes Kompenzáció</h4>
+                        <p>Piaci bérek és vonzó juttatási csomagok biztosítása.</p>
+                    </div>
+                    <div class="feature">
+                        <h4>Szakmai Fejlődés</h4>
+                        <p>Képzések, mentorprogramok és előrelépési lehetőségek támogatása.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="viz" class="section bg-light">
+        <div class="container">
+            <h2>Adatok Vizualizációja</h2>
+            <p style="text-align: center; margin-bottom: 20px;">Lemorzsolódás osztályonkénti eloszlása</p>
+            <div id="vis" style="width: 100%; display: flex; justify-content: center;"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="section footer-section">
+        <div class="container">
+            <h2>Lépjen Kapcsolatba Velünk</h2>
+            <p>Kérdése van a projekttel kapcsolatban?</p>
+            <form id="contactForm">
+                <input type="email" placeholder="Az Ön e-mail címe" required>
+                <button type="submit" class="btn-primary">Feliratkozás</button>
+            </form>
+            <p id="formMessage"></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 HR Elemző Csoport. Minden jog fenntartva.</p>
+        </div>
+    </footer>
+
+    <script src="Script.js"></script>
+</body>
+</html>
