@@ -165,18 +165,25 @@ const vlSpecAge = {
     "data": { "url": "HR_Analytics.csv" },
     "width": "container",
     "height": 400,
+    "transform": [
+        {
+            "calculate": "isValid(toNumber(datum.Age)) ? (toNumber(datum.Age) <= 25 ? '18-25' : toNumber(datum.Age) <= 35 ? '26-35' : toNumber(datum.Age) <= 45 ? '36-45' : toNumber(datum.Age) <= 55 ? '46-55' : '55+') : 'Ismeretlen'",
+            "as": "AgeGroup"
+        }
+    ],
     "mark": "bar",
     "encoding": {
       "x": {
         "field": "AgeGroup",
         "type": "ordinal",
         "title": "Korcsoport",
-        "sort": ["18-25", "26-35", "36-45", "46-55", "55+"]
+        "sort": ["18-25", "26-35", "36-45", "46-55", "55+", "Ismeretlen"]
       },
       "y": {
         "aggregate": "count",
-        "title": "Dolgozók száma",
-        "stack": "normalize"
+        "title": "Dolgozók aránya",
+        "stack": "normalize",
+        "axis": {"format": ".0%"}
       },
       "color": {
         "field": "Attrition",
@@ -199,8 +206,7 @@ const vlSpecAge = {
         "view": {"stroke": "transparent"},
         "axis": {
             "labelFont": "Roboto",
-            "titleFont": "Roboto",
-            "format": "%"
+        "titleFont": "Roboto"
         },
         "legend": {
             "labelFont": "Roboto",
