@@ -22,6 +22,12 @@
                     <li><a href="#solutions">Megoldások</a></li>
                     <li><a href="#viz">Adatvizualizáció</a></li>
                     <li><a href="#contact">Kapcsolat</a></li>
+                    <li>
+                        <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark mode kapcsoló">
+                            <span class="sun-icon">☀️</span>
+                            <span class="moon-icon">🌙</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -90,8 +96,49 @@
     <section id="viz" class="section bg-light">
         <div class="container">
             <h2>Adatok Vizualizációja</h2>
-            <p style="text-align: center; margin-bottom: 20px;">Lemorzsolódás osztályonkénti eloszlása</p>
-            <div id="vis" style="width: 100%; display: flex; justify-content: center;"></div>
+            
+            <!-- Diagram 1: Lemorzsolódás osztályonkénti eloszlása -->
+            <div class="viz-section">
+                <h3>Lemorzsolódás Részlegek Szerint</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Az alábbi diagram bemutatja, hogyan oszlik meg a lemorzsolódás a különböző részlegek között. Látható, hogy mely osztályokon történik a legnagyobb munkaerő-veszteség.</p>
+                <div id="vis" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
+            <!-- Diagram 2: Korcsoport szerinti lemorzsolódás -->
+            <div class="viz-section" style="margin-top: 50px;">
+                <h3>Lemorzsolódás Korcsoportok Szerint</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Ez a diagram megmutatja, hogy mely korcsoportokban a legmagasabb a távozási hajlandóság. A fiatalabb munkavállalók gyakran nagyobb mobilitást mutatnak.</p>
+                <div id="vis-age" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
+            <!-- Diagram 3: Munkával való elégedettség hatása -->
+            <div class="viz-section" style="margin-top: 50px;">
+                <h3>Munkahelyi Elégedettség és Lemorzsolódás</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Az elégedettségi szintek (1-4 skálán) és a lemorzsolódás közötti összefüggés. Az alacsonyabb elégedettség egyértelműen magasabb távozási arányt eredményez.</p>
+                <div id="vis-satisfaction" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
+            <!-- Diagram 4: Munka-magánélet egyensúly -->
+            <div class="viz-section" style="margin-top: 50px;">
+                <h3>Munka-Magánélet Egyensúly Hatása</h3>
+                <p style="text-align: center; margin-bottom: 20px;">A munka-magánélet egyensúly (1-4 skálán) hatása a lemorzsolódásra. A jobb egyensúly alacsonyabb fluktuációt eredményez.</p>
+                <div id="vis-worklife" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
+            <!-- Diagram 5: Túlóra hatása -->
+            <div class="viz-section" style="margin-top: 50px;">
+                <h3>Túlóra Hatása a Lemorzsolódásra</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Összehasonlítás a túlórázó és nem túlórázó munkavállalók távozási aránya között. A rendszeres túlóra jelentősen növeli a lemorzsolódás kockázatát.</p>
+                <div id="vis-overtime" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
+            <!-- Diagram 6: Havi jövedelem részlegenként -->
+            <div class="viz-section" style="margin-top: 50px;">
+                <h3>Átlagos Havi Jövedelem Részlegek Szerint</h3>
+                <p style="text-align: center; margin-bottom: 20px;">A különböző részlegek átlagos havi jövedelme. A kompenzációs különbségek fontos szerepet játszanak a munkavállalói elégedettségben.</p>
+                <div id="vis-income" style="width: 100%; display: flex; justify-content: center;"></div>
+            </div>
+
         </div>
     </section>
 

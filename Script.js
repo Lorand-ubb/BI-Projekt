@@ -1,3 +1,26 @@
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('darkModeToggle');
+const body = document.body;
+
+// Check for saved dark mode preference
+const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+
+if (isDarkMode) {
+    body.classList.add('dark-mode');
+}
+
+// Toggle dark mode
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+    
+    // Save preference to localStorage
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        localStorage.setItem('darkMode', 'disabled');
+    }
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -80,7 +103,9 @@ document.querySelectorAll('.card, .list-group, .feature').forEach(el => {
     simpleObserver.observe(el);
 });
 
-// Vega-Lite Visualization
+// Vega-Lite Visualizations
+
+// Visualization 1: Department Attrition
 const vlSpec = {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": { "url": "https://raw.githubusercontent.com/Lorand-ubb/BI-Projekt/refs/heads/main/sc.json" },
@@ -131,7 +156,262 @@ const vlSpec = {
     }
   };
   
-  // Embed the visualization
-  vegaEmbed('#vis', vlSpec).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
+vegaEmbed('#vis', vlSpec).then(function(result) {
+}).catch(console.error);
+
+// Visualization 2: Age Group Attrition (Stacked Bar)
+const vlSpecAge = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "HR_Analytics.csv" },
+    "width": "container",
+    "height": 400,
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "AgeGroup",
+        "type": "ordinal",
+        "title": "Korcsoport",
+        "sort": ["18-25", "26-35", "36-45", "46-55", "55+"]
+      },
+      "y": {
+        "aggregate": "count",
+        "title": "Dolgozók száma",
+        "stack": "normalize"
+      },
+      "color": {
+        "field": "Attrition",
+        "type": "nominal",
+        "title": "Lemorzsolódás",
+        "scale": {"domain": ["Yes", "No"], "range": ["#e74c3c", "#2ecc71"]},
+        "legend": {
+            "labelExpr": "datum.value == 'Yes' ? 'Igen' : 'Nem'"
+        }
+      },
+      "tooltip": [
+        {"field": "AgeGroup", "title": "Korcsoport"},
+        {"field": "Attrition", "title": "Lemorzsolódás"},
+        {"aggregate": "count", "title": "Létszám"}
+      ]
+    },
+    "title": "Lemorzsolódás Korcsoportok Szerint (Százalékos)",
+    "config": {
+        "background": "#ffffff",
+        "view": {"stroke": "transparent"},
+        "axis": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto",
+            "format": "%"
+        },
+        "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "title": {
+            "font": "Roboto",
+            "fontSize": 16
+        }
+    }
+};
+
+vegaEmbed('#vis-age', vlSpecAge).then(function(result) {
+}).catch(console.error);
+
+// Visualization 3: Job Satisfaction (Donut Chart)
+const vlSpecSatisfaction = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "HR_Analytics.csv" },
+    "width": "container",
+    "height": 400,
+    "mark": {"type": "arc", "innerRadius": 80},
+    "encoding": {
+      "theta": {
+        "aggregate": "count",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "JobSatisfaction",
+        "type": "ordinal",
+        "title": "Elégedettségi szint",
+        "scale": {"scheme": "redyellowgreen"},
+        "legend": {
+            "labelExpr": "datum.value + ' (1=Alacsony, 4=Magas)'"
+        }
+      },
+      "tooltip": [
+        {"field": "JobSatisfaction", "title": "Elégedettség"},
+        {"aggregate": "count", "title": "Létszám"}
+      ]
+    },
+    "title": "Munkahelyi Elégedettség Megoszlása",
+    "config": {
+        "background": "#ffffff",
+        "view": {"stroke": "transparent"},
+        "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "title": {
+            "font": "Roboto",
+            "fontSize": 16
+        }
+    }
+};
+
+vegaEmbed('#vis-satisfaction', vlSpecSatisfaction).then(function(result) {
+}).catch(console.error);
+
+// Visualization 4: Work-Life Balance (Area Chart)
+const vlSpecWorkLife = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "HR_Analytics.csv" },
+    "width": "container",
+    "height": 400,
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "field": "WorkLifeBalance",
+        "type": "ordinal",
+        "title": "Munka-magánélet egyensúly (1=Rossz, 4=Kiváló)"
+      },
+      "y": {
+        "aggregate": "count",
+        "title": "Dolgozók száma",
+        "stack": "center"
+      },
+      "color": {
+        "field": "Attrition",
+        "type": "nominal",
+        "title": "Lemorzsolódás",
+        "scale": {"domain": ["Yes", "No"], "range": ["#e74c3c", "#2ecc71"]},
+        "legend": {
+            "labelExpr": "datum.value == 'Yes' ? 'Igen' : 'Nem'"
+        }
+      },
+      "opacity": {"value": 0.7},
+      "tooltip": [
+        {"field": "WorkLifeBalance", "title": "Egyensúly"},
+        {"field": "Attrition", "title": "Lemorzsolódás"},
+        {"aggregate": "count", "title": "Létszám"}
+      ]
+    },
+    "title": "Munka-Magánélet Egyensúly Hatása",
+    "config": {
+        "background": "#ffffff",
+        "view": {"stroke": "transparent"},
+        "axis": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "title": {
+            "font": "Roboto",
+            "fontSize": 16
+        }
+    }
+};
+
+vegaEmbed('#vis-worklife', vlSpecWorkLife).then(function(result) {
+}).catch(console.error);
+
+// Visualization 5: Overtime Impact (Pie Chart)
+const vlSpecOvertime = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "HR_Analytics.csv" },
+    "width": "container",
+    "height": 400,
+    "transform": [
+        {"filter": "datum.Attrition == 'Yes'"}
+    ],
+    "mark": {"type": "arc", "outerRadius": 150},
+    "encoding": {
+      "theta": {
+        "aggregate": "count",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "OverTime",
+        "type": "nominal",
+        "title": "Túlóra",
+        "scale": {"domain": ["Yes", "No"], "range": ["#e74c3c", "#3498db"]},
+        "legend": {
+            "labelExpr": "datum.value == 'Yes' ? 'Túlórával' : 'Túlóra nélkül'"
+        }
+      },
+      "tooltip": [
+        {"field": "OverTime", "title": "Túlóra"},
+        {"aggregate": "count", "title": "Távozók száma"}
+      ]
+    },
+    "title": "Túlóra Hatása a Lemorzsolódásra (Távozók Megoszlása)",
+    "config": {
+        "background": "#ffffff",
+        "view": {"stroke": "transparent"},
+        "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "title": {
+            "font": "Roboto",
+            "fontSize": 16
+        }
+    }
+};
+
+vegaEmbed('#vis-overtime', vlSpecOvertime).then(function(result) {
+}).catch(console.error);
+
+// Visualization 6: Monthly Income by Department (Horizontal Bar)
+const vlSpecIncome = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "HR_Analytics.csv" },
+    "width": "container",
+    "height": 300,
+    "mark": "bar",
+    "encoding": {
+      "y": {
+        "field": "Department",
+        "type": "nominal",
+        "title": "Részleg",
+        "sort": "-x"
+      },
+      "x": {
+        "field": "MonthlyIncome",
+        "aggregate": "mean",
+        "title": "Átlagos havi jövedelem ($)"
+      },
+      "color": {
+        "field": "MonthlyIncome",
+        "aggregate": "mean",
+        "type": "quantitative",
+        "title": "Jövedelem",
+        "scale": {"scheme": "blues"}
+      },
+      "tooltip": [
+        {"field": "Department", "title": "Részleg"},
+        {"field": "MonthlyIncome", "aggregate": "mean", "title": "Átlagos jövedelem", "format": ".2f"}
+      ]
+    },
+    "title": "Átlagos Havi Jövedelem Részlegek Szerint",
+    "config": {
+        "background": "#ffffff",
+        "view": {"stroke": "transparent"},
+        "axis": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "legend": {
+            "labelFont": "Roboto",
+            "titleFont": "Roboto"
+        },
+        "title": {
+            "font": "Roboto",
+            "fontSize": 16
+        }
+    }
+};
+
+vegaEmbed('#vis-income', vlSpecIncome).then(function(result) {
+}).catch(console.error);
